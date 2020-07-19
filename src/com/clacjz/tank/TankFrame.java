@@ -1,9 +1,14 @@
 package com.clacjz.tank;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * @author clacjz
+ */
 public class TankFrame extends Frame {
     public TankFrame(){
         this.setTitle("Tank War");
@@ -17,10 +22,30 @@ public class TankFrame extends Frame {
                 System.exit(0);
             }
         });
+
+        this.addKeyListener(new MyKeyListener());
     }
+
+    int x = 200, y = 200;
 
     @Override
     public void paint(Graphics g) {
-        g.fillRect(200, 200, 200, 200);
+        g.fillRect(x, y, 50, 50);
+        x += 10;
+//        y += 10;
     }
+
+    class MyKeyListener extends KeyAdapter{
+        @Override
+        public void keyPressed(KeyEvent e) {
+//            x += 30;
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            System.out.println("key release");
+        }
+    }
+
+
 }
