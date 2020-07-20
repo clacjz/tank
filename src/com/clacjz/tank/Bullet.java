@@ -7,17 +7,25 @@ public class Bullet {
 
     private int x, y;
     private Dir dir;
+    private TankFrame tankFrame = null;
 
     private static int width = 10;
     private static int height = 10;
 
-    public Bullet(int x, int y, Dir dir) {
+    private boolean live = true;
+
+    public Bullet(int x, int y, Dir dir, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.tankFrame = tankFrame;
     }
 
     public void paint(Graphics g) {
+
+        if (!live){
+            tankFrame.bullets.remove(this);
+        }
         Color color = g.getColor();
         g.setColor(Color.RED);
 
@@ -44,5 +52,11 @@ public class Bullet {
             default:
                 break;
         }
+
+        if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
+            live = false;
+        }
     }
+
+
 }
