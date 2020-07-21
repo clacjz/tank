@@ -12,6 +12,7 @@ public class Main {
             tankFrame.tanks.add(new Tank(50 + i * 80, 400, Dir.UP, tankFrame));
         }
 
+        System.out.println();
         while (true){
             Thread.sleep(50);
             tankFrame.repaint();
