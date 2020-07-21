@@ -9,21 +9,31 @@ public class Bullet {
     private Dir dir;
     private TankFrame tankFrame = null;
 
+    private Group group = Group.BAD;
     private static int width = 10;
     private static int height = 10;
 
-    private boolean live = true;
+    private boolean living = true;
 
-    public Bullet(int x, int y, Dir dir, TankFrame tankFrame) {
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public Bullet(int x, int y, Dir dir, Group group, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tankFrame = tankFrame;
+        this.group = group;
     }
 
     public void paint(Graphics g) {
 
-        if (!live) {
+        if (!living) {
             tankFrame.bullets.remove(this);
         }
 
@@ -66,9 +76,25 @@ public class Bullet {
         }
 
         if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
-            live = false;
+            living = false;
         }
     }
 
 
+    public void collideWith(Tank tank) {
+
+        if (this.group == tank.group){
+            return;
+        }
+        Rectangle rect1 = new Rectangle(this.x + 20, this.y, width, height);
+        Rectangle rect2 = new Rectangle(tank.getX(), tank.getY(), tank.getWidth(), tank.getHeight());
+        if (rect1.intersects(rect2)){
+            tank.die();
+            this.die();
+        }
+    }
+
+    private void die() {
+        this.living = false;
+    }
 }

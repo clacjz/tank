@@ -13,12 +13,14 @@ import java.util.List;
  */
 public class TankFrame extends Frame {
 
-    Tank myTank = new Tank(200, 200, Dir.UP, this);
+    Tank myTank = new Tank(200, 200, Dir.UP, Group.GOOD, this);
     List<Bullet> bullets = new ArrayList<>();
     List<Tank> tanks = new ArrayList<>();
 
+    Explode e = new Explode(100, 100, this);
 
-    Bullet b = new Bullet(300, 300, Dir.DOWN, this);
+
+  //  Bullet b = new Bullet(300, 300, Dir.DOWN, );
 
     static final int GAME_WIDTH = 800;
     static final int GAME_HEIGHT = 600;
@@ -57,6 +59,11 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
+
+        Color c = g.getColor();
+        g.setColor(Color.WHITE);
+        g.drawString("子弹的数量" + bullets.size(), 10, 60);
+        g.drawString("敌方坦克的数量" + tanks.size(), 10, 80);
         myTank.paint(g);
         for (int i = 0; i < bullets.size(); i++){
             bullets.get(i).paint(g);
@@ -65,6 +72,14 @@ public class TankFrame extends Frame {
         for (int i = 0; i < tanks.size(); i++){
             tanks.get(i).paint(g);
         }
+
+        for (int i = 0; i < bullets.size(); i++) {
+            for (int j = 0; j < tanks.size(); j++) {
+                bullets.get(i).collideWith(tanks.get(j));
+            }
+        }
+
+        e.paint(g);
     }
 
     class MyKeyListener extends KeyAdapter {

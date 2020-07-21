@@ -9,7 +9,7 @@ public class Main {
         TankFrame tankFrame = new TankFrame();
 
         for (int i=0; i < 5; i++){
-            tankFrame.tanks.add(new Tank(50 + i * 80, 400, Dir.UP, tankFrame));
+            tankFrame.tanks.add(new Tank(50 + i * 80, 400, Dir.UP, Group.BAD, tankFrame));
         }
 
         System.out.println();
