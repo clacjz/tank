@@ -23,14 +23,26 @@ public class Bullet {
 
     public void paint(Graphics g) {
 
-        if (!live){
+        if (!live) {
             tankFrame.bullets.remove(this);
         }
-        Color color = g.getColor();
-        g.setColor(Color.RED);
 
-        g.fillOval(x, y, width, height);
-        g.setColor(color);
+        switch (dir) {
+            case UP:
+                g.drawImage(ResourceMgr.bulletU, x + 20, y, null);
+                break;
+            case DOWN:
+                g.drawImage(ResourceMgr.bulletD, x + 18, y + 40, null);
+                break;
+            case LEFT:
+                g.drawImage(ResourceMgr.bulletL, x, y + 22, null);
+                break;
+            case RIGHT:
+                g.drawImage(ResourceMgr.bulletR, x + 40, y + 23, null);
+                break;
+            default:
+                break;
+        }
         move();
     }
 
