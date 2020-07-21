@@ -98,16 +98,16 @@ public class TankFrame extends Frame {
         public void keyPressed(KeyEvent e) {
             int keyCode = e.getKeyCode();
             switch (keyCode) {
-                case KeyEvent.VK_LEFT:
+                case KeyEvent.VK_A:
                     bL = true;
                     break;
-                case KeyEvent.VK_RIGHT:
+                case KeyEvent.VK_D:
                     bR = true;
                     break;
-                case KeyEvent.VK_UP:
+                case KeyEvent.VK_W:
                     bU = true;
                     break;
-                case KeyEvent.VK_DOWN:
+                case KeyEvent.VK_S:
                     bD = true;
                     break;
                 default:
@@ -122,16 +122,16 @@ public class TankFrame extends Frame {
 //            System.out.println("key release");
             int keyCode = e.getKeyCode();
             switch (keyCode){
-                case KeyEvent.VK_UP:
+                case KeyEvent.VK_W:
                     bU = false;
                     break;
-                case KeyEvent.VK_DOWN:
+                case KeyEvent.VK_S:
                     bD = false;
                     break;
-                case KeyEvent.VK_LEFT:
+                case KeyEvent.VK_A:
                     bL = false;
                     break;
-                case KeyEvent.VK_RIGHT:
+                case KeyEvent.VK_D:
                     bR = false;
                     break;
                 case KeyEvent.VK_CONTROL:
