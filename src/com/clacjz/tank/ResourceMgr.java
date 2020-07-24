@@ -5,16 +5,22 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class ResourceMgr {
-    public static BufferedImage tankL, tankR, tankU, tankD;
+    public static BufferedImage badTankL, badTankR, badTankU, badTankD;
+    public static BufferedImage goodTankL, goodTankR, goodTankU, goodTankD;
     public static BufferedImage bulletL, bulletR, bulletU, bulletD;
     public static BufferedImage[] explodes = new BufferedImage[16];
 
     static {
         try {
-            tankU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("image/badTank1.png"));
-            tankR = ImageUtil.rotateImage(tankU, 90);
-            tankL = ImageUtil.rotateImage(tankU, -90);
-            tankD = ImageUtil.rotateImage(tankU, 180);
+            badTankU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("image/badTank1.png"));
+            badTankR = ImageUtil.rotateImage(badTankU, 90);
+            badTankL = ImageUtil.rotateImage(badTankU, -90);
+            badTankD = ImageUtil.rotateImage(badTankU, 180);
+
+            goodTankU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("image/goodTank1.png"));
+            goodTankR = ImageUtil.rotateImage(goodTankU, 90 );
+            goodTankL = ImageUtil.rotateImage(goodTankU, -90);
+            goodTankD = ImageUtil.rotateImage(goodTankU, 180);
         } catch (IOException e) {
             e.printStackTrace();
         }
