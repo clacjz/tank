@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class Tank {
     private int x, y;
-    private int width = ResourceMgr.tankD.getWidth();
-    private int height = ResourceMgr.tankD.getHeight();
+    private int width = ResourceMgr.tankU.getWidth();
+    private int height = ResourceMgr.tankU.getHeight();
 
     public Group group = Group.BAD;
 

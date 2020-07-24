@@ -11,7 +11,7 @@ public class ResourceMgr {
 
     static {
         try {
-            tankU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("image/badTank1"));
+            tankU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("image/badTank1.png"));
             tankR = ImageUtil.rotateImage(tankU, 90);
             tankL = ImageUtil.rotateImage(tankU, -90);
             tankD = ImageUtil.rotateImage(tankU, 180);
