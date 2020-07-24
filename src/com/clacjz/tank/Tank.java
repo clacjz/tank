@@ -12,7 +12,7 @@ public class Tank {
 
     private TankFrame tf = null;
     private Dir dir = Dir.UP;
-    private static final int speed = 10;
+    private static final int speed = Integer.parseInt((String)PropertyMgr.get("tankSpeed"));
 
     private boolean moving = true;
 

@@ -3,7 +3,7 @@ package com.clacjz.tank;
 import java.awt.*;
 
 public class Bullet {
-    private static final int speed = 10;
+    private static final int speed = Integer.parseInt((String) PropertyMgr.get("bulletSpeed"));
 
     private int x, y;
     private Dir dir;
@@ -46,16 +46,16 @@ public class Bullet {
 
         switch (dir) {
             case UP:
-                g.drawImage(ResourceMgr.bulletU, x + 20, y, null);
+                g.drawImage(ResourceMgr.bulletU, x + Tank.WIDTH / 2 - 6, y, null);
                 break;
             case DOWN:
-                g.drawImage(ResourceMgr.bulletD, x + 18, y + 40, null);
+                g.drawImage(ResourceMgr.bulletD, x + Tank.WIDTH / 2 - 6, y + Tank.HEIGHT, null);
                 break;
             case LEFT:
-                g.drawImage(ResourceMgr.bulletL, x, y + 22, null);
+                g.drawImage(ResourceMgr.bulletL, x, y + Tank.HEIGHT / 2 - 6, null);
                 break;
             case RIGHT:
-                g.drawImage(ResourceMgr.bulletR, x + 40, y + 23, null);
+                g.drawImage(ResourceMgr.bulletR, x + Tank.WIDTH, y + Tank.HEIGHT / 2 - 4, null);
                 break;
             default:
                 break;
@@ -82,7 +82,7 @@ public class Bullet {
                 break;
         }
 
-        rect.x = this.x ;
+        rect.x = this.x;
         rect.y = this.y;
 
         if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {

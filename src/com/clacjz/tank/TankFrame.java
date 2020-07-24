@@ -22,8 +22,8 @@ public class TankFrame extends Frame {
 
   //  Bullet b = new Bullet(300, 300, Dir.DOWN, );
 
-    static final int GAME_WIDTH = 1080;
-    static final int GAME_HEIGHT = 720;
+    static final int GAME_WIDTH = Integer.parseInt((String) PropertyMgr.get("gameWidth"));
+    static final int GAME_HEIGHT = Integer.parseInt((String) PropertyMgr.get("gameHeight"));
 
     public TankFrame() {
         this.setTitle("Tank War");
