@@ -1,24 +1,27 @@
 package com.clacjz.tank;
 
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
 public class Tank {
-    private int x, y;
+    int x, y;
     public static int WIDTH = ResourceMgr.goodTankU.getWidth();
     public static int HEIGHT = ResourceMgr.goodTankU.getHeight();
 
     public Group group = Group.BAD;
 
-    private TankFrame tf = null;
-    private Dir dir = Dir.UP;
-    private static final int speed = Integer.parseInt((String)PropertyMgr.get("tankSpeed"));
+    TankFrame tf = null;
+    Dir dir = Dir.UP;
+    private static final int speed = Integer.parseInt((String) PropertyMgr.get("tankSpeed"));
 
     private boolean moving = true;
 
     private boolean living = true;
 
     private Random random = new Random();
+
+    FireStrategy fS = null;
 
     Rectangle rect = new Rectangle();
 
@@ -60,7 +63,7 @@ public class Tank {
     }
 
 
-    public Tank(int x, int y, Dir dir, Group group, TankFrame tf) {
+    public Tank(int x, int y, Dir dir, Group group, TankFrame tf) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         super();
         this.x = x;
         this.y = y;
@@ -72,6 +75,23 @@ public class Tank {
         rect.y = this.y;
         rect.height = HEIGHT;
         rect.width = WIDTH;
+        if (group == Group.BAD) {
+            String bad = (String) PropertyMgr.get("badTankStrategy");
+            try {
+                fS = (FireStrategy) Class.forName(bad).getDeclaredConstructor().newInstance();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+            else {
+            String good = (String) PropertyMgr.get("goodTankStrategy");
+            try {
+                fS = (FireStrategy) Class.forName(good).getDeclaredConstructor().newInstance();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 
     public Dir getDir() {
@@ -91,7 +111,11 @@ public class Tank {
     }
 
     public void fire() {
-        tf.bullets.add(new Bullet(this.x, this.y, this.dir, this.group, tf));
+        fS.fire(this);
+//        int bx = this.x + Tank.WIDTH / 2 - Bullet.width / 2;
+//        int by = this.y + Tank.HEIGHT / 2 - Bullet.height / 2;
+//
+//        tf.bullets.add(new Bullet(this.x, this.y, this.dir, this.group, this.tf));
     }
 
     public void paint(Graphics g) {

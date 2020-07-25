@@ -5,7 +5,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
         TankFrame tankFrame = new TankFrame();
 
         int initTankCount = Integer.parseInt((String) PropertyMgr.get("initTankCount")) ;

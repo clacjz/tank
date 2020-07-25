@@ -10,8 +10,8 @@ public class Bullet {
     private TankFrame tankFrame = null;
 
     private Group group = Group.BAD;
-    private static int width = 10;
-    private static int height = 10;
+    public static int width = 10;
+    public static int height = 10;
 
     Rectangle rect = new Rectangle();
 
@@ -31,6 +31,8 @@ public class Bullet {
         this.dir = dir;
         this.tankFrame = tankFrame;
         this.group = group;
+
+        tankFrame.bullets.add(this);
 
         rect.x = rect.x;
         rect.y = rect.y;
